@@ -6,13 +6,14 @@ const app = express();
 
 app.use(express.static("public"));
 
-app.all("/", (request, response) => {
-  response.sendFile(__dirname + "/views/index.html");
-});
 
 // This responds to all HTTP verbs
-app.all("/home", (req, res) => {
-  res.sendFile(__dirname + "/views/home.html");
+app.all("/home", (request, response) => {
+  request.sendFile(__dirname + "/views/home.html");
+});
+
+app.all("/", (request, response) => {
+  response.sendFile(__dirname + "/views/index.html");
 });
 
 app.listen(3000, () => {
